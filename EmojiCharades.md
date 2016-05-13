@@ -23,10 +23,12 @@ Tables
 id | firstName | lastName | emailAddress | score
 ----|----------|----------|--------------|-----------
 autoInt | nvarchar(50) | nvarchar(50) | nvarchar(100) | integer
-
+---|---|---|---|---
+Primary Key | | | | 
 
 
 #### messages
 id | sender | emoji | reciever | resonse | pointTo
 ----|----------|----------|---------|-----|------
-autoInt | nvarchar(50) | nvarchar(1000) | nvarchar(50) | nvarchar(1000) | bit
+autoInt | integer | nvarchar(1000) | integer | nvarchar(1000) | bit
+Primary Key | Foreign Key | | Foreign Key | | 0=sender, 1=reciever
