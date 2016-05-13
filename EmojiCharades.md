@@ -23,7 +23,6 @@ Tables
 id | firstName | lastName | emailAddress | score
 ----|----------|----------|--------------|-----------
 autoInt | nvarchar(50) | nvarchar(50) | nvarchar(100) | integer
----|---|---|---|---
 Primary Key | | | | 
 
 
