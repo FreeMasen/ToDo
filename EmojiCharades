@@ -1,0 +1,24 @@
+Views
+======
+#### main view
+
+#### messages view
+
+#### message view
+
+#### profile/settings view
+
+Models
+=======
+
+#### user
+
+#### message
+
+
+Tables
+=======
+
+#### users
+
+#### messages
