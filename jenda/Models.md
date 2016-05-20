@@ -23,6 +23,7 @@ enum Status {
   case Confirmed
   case Tentative
   case Cancelled
+}
 ```
 
 ## User
@@ -54,10 +55,30 @@ this would be good for future expansion
 ```
 ## Reminder?
 
-## class Day
+## Day
+```swift
+class Day {
+    
+}
+```
 
-## class Page
+## Page
+```swift
+enum Page {
+    case Left(Day, Day, Day)
+    case Right(Day, Day, Day, Day)
+}
+```
 
-## class Week
+## Week
+```swift
+class week {
 
+}
+```
 ## Calendar
+```swift 
+class Calendar {
+
+}
+```
