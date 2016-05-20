@@ -38,7 +38,7 @@ class User {
 While this may not be included in itial release
 this would be good for future expansion
 ```swift
-  struct CalendarsOptions {
+struct CalendarsOptions {
     var rawValue: Int
     init(rawValue: Int) {
       self.rawValue = rawValue
@@ -50,7 +50,6 @@ this would be good for future expansion
     static let Outlook = CalendarsOptions(rawValue: 2)
     static let Facebook = CalendarsOptions(rawValue: 4)
     static let WunderList = CalendarsIotions(rawValue: 8)
-    
 }
 ```
 ## Reminder?
