@@ -6,20 +6,28 @@ extension NSDate {
   //to convert dates to and from strings, these vars 
   //will need to be utilized in multiple places within 
   //my NSDate extention. 
-  private var calendar: NSCalendar {
-     
-  return NSCalendar.currentCalendar()
-  }
-  private var allComponents: NSCalendarUnit {
-    return [.Year,.Month,.Day,.Hour,.Minute,.Second, .TimeZone]
-  }
-  func atMidnightGMT() -> NSDate {
+  private var calendar: NSCalendar { return NSCalendar.currentCalendar() }
+  private var allComponents: NSCalendarUnit { return [.Year,.Month,.Day,.Hour,.Minute,.Second, .TimeZone] }
+  
+  func atMidnight() -> NSDate {
     let components = calendar.components(allComponents, fromDate: self)!
     components.setValue(0, forComponent: .Hour)
     components.setValue(0, forComponent: .Minute)
     components.setValue(0, forComponent: .Second)
-    components.setValue(0, forComponent: .Nanosecond)
     return components.date!
+  }
+  
+  func atEOD() -> NSDate {
+    let components = calendar.components(allComponents, fromDate: self)!
+    components.setValue(23, forComponent: .Hour)
+    components.setValue(59, forComponent: .Minute)
+    components.setValue(59, forComponent: .Second)
+    return components.date!
+  }
+  
+  func boundsForDay() -> (NSDate, NSDate) {
+    let min = self.atMidnightGMT
+    
   }
   
   //REST query string representation of the date 
