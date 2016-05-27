@@ -1,5 +1,6 @@
 ## NSDate
 
+```swift
 extension NSDate {
 let calendar: NSCalendar {
   return NSCalendar.currentCalendar
@@ -26,3 +27,5 @@ let calendar: NSCalendar {
                           components.TimeZone)
   }
 }
+
+```
