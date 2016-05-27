@@ -8,7 +8,11 @@ extension NSDate {
   //my NSDate extention. 
   private var calendar: NSCalendar { return NSCalendar.currentCalendar() }
   private var allComponents: NSCalendarUnit { return [.Year, .Month, .Day, .Hour, .Minute, .Second, .TimeZone] }
-  
+  private var dateFormatter: NSDateFormatter { 
+    let formatter = NSDateFormatter
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SS'Z'" 
+    return formatter
+  }
   func atMidnight() -> NSDate {
     let components = calendar.components(allComponents, fromDate: self)!
     components.setValue(0, forComponent: .Hour)
@@ -38,11 +42,7 @@ extension NSDate {
   //other services may require other formatting so I 
   //have included the service name incase that is true
   func asGoogleString() -> String {
-    let components = calendar.components(allComponents, fromDate: self)!
-    let timeZone = stringFromTimeZone(components.timeZone)
-    return String(format: "%04d-%02d-%02dT%02d:%02d:%02d-\(timeZone)", 
-                          components.year, components.month, components.day,
-                          components.hour, components.minute, components.second)
+    return dateFormatter.stringFromDate(self)
   }
   
   private func stringFromTimeZone(timeZone: CFTimeZone) -> String {
