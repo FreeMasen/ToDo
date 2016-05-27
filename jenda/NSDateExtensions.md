@@ -25,11 +25,6 @@ extension NSDate {
     return components.date!
   }
   
-  func boundsForDay() -> (NSDate, NSDate) {
-    let min = self.atMidnightGMT
-    
-  }
-  
   //REST query string representation of the date 
   func asPercentEncodedString() -> String {
     let stringDate = self.asString()
