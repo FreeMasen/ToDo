@@ -67,6 +67,15 @@ struct Day {
       self.dayOfTheWeek = DaysOfTheWeek(date)
     }
 }
+
+extention Day: Compareable { }
+func ==(lhs: Day, rhs: Day) -> bool {
+  return lhs.date.isEqualToDate(rhs.date)
+}
+
+func <(lhs: Day, rhs: Day) -> bool {
+  return lhs.date.timeIntervalSince1970 < rhs.date.timeIntervalSince1970
+}
 ```
 
 ## Page
@@ -84,13 +93,35 @@ struct week {
   let rightPage: Page
   
   init(days: [Day]) {
-    
+    leftPage = .Left(monday: days[0], tuesday: days[1], wednesday: days[2])
+    rightPage = .Right(thursday: days[3], friday: days[4], saturday: days[5], sunday: days[6]
   }
 }
 ```
 ## Agenda
 ```swift 
 class Agenda {
-
+  //vars/lets
+  
+  //singlton pattern
+  private var internalAgenda: Agenda?
+  private init() {
+    
+  }
+  func sharedAgenda() -> Agenda {
+    if internalAgend == nil {
+      internalAgend = Agenda()
+    }
+    return internalAgenda
+  }
+  
+  //funcs
+  private static func fetchEventsFromGoogle(responseHandler: NSData) {
+    
+  }
+  
+  private static func fetchAppointmentsFromCoreData(responseHandler: AnyObject) {
+    
+  }
 }
 ```
