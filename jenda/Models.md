@@ -1,6 +1,6 @@
 ## Appointment
 ```swift
-class Appointment {
+struct Appointment {
   var id: String?
   var title: String
   var start: NSDate
@@ -49,35 +49,48 @@ struct CalendarsOptions {
     static let Google = CalendarsOptions(rawValue: 1)
     static let Outlook = CalendarsOptions(rawValue: 2)
     static let Facebook = CalendarsOptions(rawValue: 4)
-    static let WunderList = CalendarsIotions(rawValue: 8)
+    static let WunderList = CalendarsOptions(rawValue: 8)
+    static let Evernote = CalendarsOptions(rawValue: 16)
 }
 ```
 ## Reminder?
 
 ## Day
 ```swift
-class Day {
+struct Day {
+    let date: NSDate
+    let dayOfTheWeek: String
+    let appointments: [Appointment]
     
+    init(date: NSDate) {
+      self.date = date
+      self.dayOfTheWeek = DaysOfTheWeek(date)
+    }
 }
 ```
 
 ## Page
 ```swift
 enum Page {
-    case Left(Day, Day, Day)
-    case Right(Day, Day, Day, Day)
+    case Left(monday: Day, tuesday: Day, wednesday: Day)
+    case Right(thursday: Day, friday: Day, saturday: Day, sunday: Day)
 }
 ```
 
 ## Week
 ```swift
-class week {
-
+struct week {
+  let leftPage: Page
+  let rightPage: Page
+  
+  init(days: [Day]) {
+    
+  }
 }
 ```
-## Calendar
+## Agenda
 ```swift 
-class Calendar {
+class Agenda {
 
 }
 ```
