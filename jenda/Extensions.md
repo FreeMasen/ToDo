@@ -7,7 +7,7 @@ extension NSDate {
   //will need to be utilized in multiple places within 
   //my NSDate extention. 
   private var calendar: NSCalendar { return NSCalendar.currentCalendar() }
-  private var allComponents: NSCalendarUnit { return [.Year,.Month,.Day,.Hour,.Minute,.Second, .TimeZone] }
+  private var allComponents: NSCalendarUnit { return [.Year, .Month, .Day, .Hour, .Minute, .Second, .TimeZone] }
   
   func atMidnight() -> NSDate {
     let components = calendar.components(allComponents, fromDate: self)!
