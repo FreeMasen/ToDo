@@ -32,7 +32,7 @@ extension NSDate {
   //REST query string representation of the date 
   func asPercentEncodedString() -> String {
     let stringDate = self.asString()
-    return stringDate.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    return stringDate.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
   }
   
   //the Google API requires a perticular format for the 
