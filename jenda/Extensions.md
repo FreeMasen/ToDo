@@ -44,19 +44,5 @@ extension NSDate {
   func asGoogleString() -> String {
     return dateFormatter.stringFromDate(self)
   }
-  
-  private func stringFromTimeZone(timeZone: CFTimeZone) -> String {
-      let seconds = timeZone.secondsFromGMT()
-      let hours = seconds / (60 * 60)
-      let minutes = seconds % (60 * 60)
-      //since string(format:) doesn't show + sign for positive
-      //integer, this is how I am adding the + to make it 
-      //valid for the google API query
-      if seconds > 0 {
-          return String(format: "+%02d:%02d", hours, minutes)
-      } else {
-          return String(format: "%03d:%02d", hours, minutes)
-      }
-  }
 }
 ```
