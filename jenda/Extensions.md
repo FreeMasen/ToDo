@@ -2,30 +2,58 @@
 
 ```swift
 extension NSDate {
-let calendar: NSCalendar {
-  return NSCalendar.currentCalendar
-}
+  //since I am going to be using these date components
+  //to convert dates to and from strings, these vars 
+  //will need to be utilized in multiple places within 
+  //my NSDate extention. 
+  private var calendar: NSCalendar {
+     
+  return NSCalendar.currentCalendar()
+  }
+  private var allComponents: NSCalendarUnit {
+    return [.Year,.Month,.Day,.Hour,.Minute,.Second, .TimeZone]
+  }
   func atMidnightGMT() -> NSDate {
-    let components = calendar.componentsFromDate(self)
-    components.setValue(0,.Hour)
-    components.setValue(0,.Minute)
-    components.setValue(0,.Second)
-    components.setValue(0,.Nanosecond)
-    return components.date
+    let components = calendar.components(allComponents, fromDate: self)!
+    components.setValue(0, forComponent: .Hour)
+    components.setValue(0, forComponent: .Minute)
+    components.setValue(0, forComponent: .Second)
+    components.setValue(0, forComponent: .Nanosecond)
+    return components.date!
   }
   
+  //REST query string representation of the date 
   func asPercentEncodedString() -> String {
-    let string = self.asString()
-    return stringDate.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet)
+    let stringDate = self.asString()
+    return stringDate.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
   }
   
-  func asString() -> String {
-    let components = calendar.componentsFromDate(self)
-    return String(format: "%04d-%02d-%02dT%02d:%02d:%02d-%02d:%02d, 
-                          components.Year, components.Month, components.Day,
-                          components.Hour, components.Minute, components.Second
-                          components.TimeZone)
+  //the Google API requires a perticular format for the 
+  //query string at the end of a HTTP request, this 
+  //allows me to convert any NSDate object to the 
+  //approprate string formatting for Google's API
+  //other services may require other formatting so I 
+  //have included the service name incase that is true
+  func asGoogleString() -> String {
+    let components = calendar.components(allComponents, fromDate: self)!
+    let timeZone = stringFromTimeZone(components.timeZone)
+    return String(format: "%04d-%02d-%02dT%02d:%02d:%02d-\(timeZone)", 
+                          components.year, components.month, components.day,
+                          components.hour, components.minute, components.second)
+  }
+  
+  private func stringFromTimeZone(timeZone: CFTimeZone) -> String {
+      let seconds = timeZone.secondsFromGMT()
+      let hours = seconds / (60 * 60)
+      let minutes = seconds % (60 * 60)
+      //since string(format:) doesn't show + sign for positive
+      //integer, this is how I am adding the + to make it 
+      //valid for the google API query
+      if seconds > 0 {
+          return String(format: "+%02d:%02d", hours, minutes)
+      } else {
+          return String(format: "%03d:%02d", hours, minutes)
+      }
   }
 }
-
 ```
