@@ -68,7 +68,7 @@ struct Day {
     }
 }
 
-extension Day: Compareable { }
+extension Day: Comparable { }
 func ==(lhs: Day, rhs: Day) -> bool {
   return lhs.date.isEqualToDate(rhs.date)
 }
