@@ -7,10 +7,37 @@ class Thumb {
   var attackPower: Dice
   var attacksLeft: Int
   
-  func attack() -> (attackRoll: Int, healthToRemove: Int) {
-    return (0,0)
+  func attack() -> Attack {
+    let attackRoll = Dice.d20.roll()
+    let dmg = self.attackPower.roll()
+    return Attack(attackRoll: attackRoll, damage: dmg)
   }
   
+  func levelUp() {
+    self.level += 1
+    switch self.level {
+      case 1...5: 
+        self.attackPower = .d2
+        self.health = 25
+        self.attacksLeft = 5
+      case 6...10:
+        self.attackPower = .d4
+        self.health = 30
+        self.attacksLeft = 10
+      case 11...15:
+        self.attackPower = .d6
+        self.health = 40
+        self.attacksLeft = 15
+      case 16...20:
+        self.attackPower = .d8
+        self.health = 50
+        self.attacksLeft = 20
+      case 21...25:
+        self.attackPower = .d12
+        self.health = 60
+        self.attacksLeft = 25
+    }
+  }
 }
 ```
 ``` swift
