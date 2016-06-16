@@ -6,10 +6,12 @@ class Thumb {
   var health: Int
   var attackPower: Dice
   var attacksLeft: Int
+  var defence: Int
+  var attackBonus: Int
   
   func attack() -> Attack {
-    let attackRoll = Dice.d20.roll()
-    let dmg = self.attackPower.roll()
+    let attackRoll = Dice.d20.roll() + self.attackBonus
+    let dmg = self.attackPower.roll() + self.attackBonus
     return Attack(attackRoll: attackRoll, damage: dmg)
   }
   
@@ -20,22 +22,32 @@ class Thumb {
         self.attackPower = .d2
         self.health = 25
         self.attacksLeft = 5
+        self.defence = 10
+        self.attackBonus = 1
       case 6...10:
         self.attackPower = .d4
         self.health = 30
         self.attacksLeft = 10
+        self.defence = 12
+        self.attackBonus = 3
       case 11...15:
         self.attackPower = .d6
         self.health = 40
         self.attacksLeft = 15
+        self.defence = 15
+        self.attackBonus = 5
       case 16...20:
         self.attackPower = .d8
         self.health = 50
         self.attacksLeft = 20
+        self.defence = 18
+        self.attackBonus = 8
       case 21...25:
         self.attackPower = .d12
         self.health = 60
         self.attacksLeft = 25
+        self.defence = 20
+        self.attackBonus = 10
     }
   }
 }
