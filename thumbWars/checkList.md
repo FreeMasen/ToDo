@@ -7,7 +7,7 @@
 - [ ] if user 2 accepts user 1s request, the reply would first perform the defend against
 attack method on the uers's thumb, and adds the correct image for the overall interaction.
 
-- [ ]this would require that the the user selects the first message from user 1 and a seperate
+- [ ] this would require that the the user selects the first message from user 1 and a seperate
 view would be needed, or just the text of the single button would need to be updated to indicate the 
 status.
 
