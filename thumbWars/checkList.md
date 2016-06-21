@@ -1,4 +1,4 @@
-- New system for interaction
+# New system for interaction
 
 - [ ] user 1 sends request to user 2 asking if user 2 wants to participate
 
